@@ -20,6 +20,13 @@ export const getProductThunk = () => (dispatch) => {
         .finally(() => dispatch(setIsLoading(false)));
 }
 
+export const getFilterThunk = searchProduct => (dispatch) => {
+    dispatch(setIsLoading(true));
+    return axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products?query=${searchProduct}`)
+        .then(res => dispatch(setProduct(res.data.data)))
+        .finally(() => dispatch(setIsLoading(false)));
+}
+
 export const { setProduct } = productSlice.actions;
 
 export default productSlice.reducer;
