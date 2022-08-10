@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFilterThunk, getProductThunk } from '../store/slices/productSlice';
+import { filterThunk, getFilterThunk, getProductThunk } from '../store/slices/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Row, Col, Card, InputGroup, Form, Button, ListGroup } from 'react-bootstrap';
@@ -35,7 +35,11 @@ const Home = () => {
                     <ListGroup>
                         {
                             category.categories?.map(categories => (
-                                <ListGroup.Item key={categories.id}>{categories.name}</ListGroup.Item>
+                                <ListGroup.Item 
+                                key={categories.id} onClick={()=> dispatch(filterThunk(categories.id))}>
+                                    {categories.name}
+                                    
+                                    </ListGroup.Item>
 
                             ))
                         }

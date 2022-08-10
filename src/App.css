@@ -3,3 +3,13 @@ img{
     height: 200px;
     padding: 1rem;
 }
+
+.me-auto{
+    margin-left: 90%;
+}
+.home_detail{
+    color: rgb(0, 0, 0);
+}
+.home_detail:hover{
+    color: red;
+}
