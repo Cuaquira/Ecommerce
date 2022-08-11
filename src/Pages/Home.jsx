@@ -58,7 +58,7 @@ const Home = () => {
                             value={searchProduct}
                         />
                         <Button variant="outline-secondary" onClick={() => dispatch(getFilterThunk(searchProduct))}>
-                            Button
+                            Search
                         </Button>
                     </InputGroup>
 

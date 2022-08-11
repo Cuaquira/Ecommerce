@@ -13,3 +13,19 @@ img{
 .home_detail:hover{
     color: red;
 }
+.section{
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 3rem;
+}
+.section_card{
+    margin: 1rem;
+    width: 300px;
+    
+}
+.Similary_info{
+    padding-top: 5rem;
+}
+.Similary_info h2{
+    color: black;
+}
