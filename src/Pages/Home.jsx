@@ -33,10 +33,12 @@ const Home = () => {
                 <Col lg={3}>
 
                     <ListGroup>
+                        <h2>Categories</h2>
                         {
                             category.categories?.map(categories => (
                                 <ListGroup.Item 
                                 key={categories.id} onClick={()=> dispatch(filterThunk(categories.id))}>
+                                    
                                     {categories.name}
                                     
                                     </ListGroup.Item>
