@@ -7,6 +7,7 @@ import LoadingScreen from "./Components/LoadingScreen"
 import { useSelector } from "react-redux"
 import {Container} from "react-bootstrap"
 import { HashRouter, Routes, Route, } from 'react-router-dom'
+import ProtectedRoutes from './Components/ProtectedRoutes'
 
   function App() {
 
@@ -18,10 +19,13 @@ import { HashRouter, Routes, Route, } from 'react-router-dom'
         {isLoading && <LoadingScreen />}
         <Container>
           <Routes>
+            
             <Route path='/' element={<Home />} />
             <Route path='/shop/:id' element={<ProductDetail />} />
             <Route path='/login' element={<Login />} />
+            <Route element={<ProtectedRoutes/>}>
             <Route path='/purchases' element={<Purchases />} />
+            </Route>
           </Routes>
         </Container>
 

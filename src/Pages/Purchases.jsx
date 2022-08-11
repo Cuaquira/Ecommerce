@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Button, Card } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getPurchaseThunk } from '../store/slices/purchases.Slice';
 
 const Purchases = () => {
+
+    const navigate =useNavigate();
+    const purchases = useSelector(state => state.purchases)
+    const event = new Date(Date.UTC(2022));
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getPurchaseThunk())
+    }, [])
     return (
         <div>
-            <h1>Purchases</h1>
+            <div>
+            <p> <span className='home_detail' onClick={() => navigate("/#/")}>Home –</span> Purchases</p>
+            </div>
+            <h1>My Purchases</h1>
+            {
+                purchases.purchases?.map(news => (
+                    <Card key={news.id}>
+                        <Card.Header>{event.toLocaleString('Pe', { timeZone: 'UTC' })}</Card.Header>
+                        <Card.Body>
+                            <Card.Title>{news.cart.products[0]?.title}</Card.Title>
+                            <Card.Text>
+                                With supporting text below as a natural lead-in to additional content.
+                            </Card.Text>
+                            <Button variant="primary">Go somewhere</Button>
+                        </Card.Body>
+                    </Card>
+                ))
+            }
         </div>
     );
 };
