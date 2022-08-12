@@ -29,3 +29,44 @@ img{
 .Similary_info h2{
     color: black;
 }
+.Detail_price{
+    display: flex;
+    justify-content: space-around;
+    border: 10px;
+}
+.d-block.w-100{
+    height: 500px;
+}
+.ms-5.me-auto{
+    
+    width: 500px;
+}
+.container_price{
+    margin-top: 2rem;
+}
+.container_description{
+    margin-top: 4rem;
+}
+.Item_price{
+    margin-top: 0.5rem;
+}
+.Category_home{
+    color: rgb(56, 56, 56);
+}
+.Home_category{
+    margin-top: 2rem;
+}
+.Category_home:hover{
+    color: red;
+    
+}
+.fa-solid.fa-house{
+   margin-top: 2rem;
+   padding-left: 0.5rem;
+}
+.Login{
+    width: 50%;
+    margin-top: 2rem;
+    margin-left: 25%;
+    
+}

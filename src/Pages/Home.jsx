@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { filterThunk, getFilterThunk, getProductThunk } from '../store/slices/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Row, Col, Card, InputGroup, Form, Button, ListGroup } from 'react-bootstrap';
+import { Row, Col, Card, InputGroup, Form, Button, ListGroup, Badge } from 'react-bootstrap';
 import axios from 'axios';
 
 
@@ -27,63 +27,79 @@ const Home = () => {
 
     console.log(product)
     return (
-        <div>
+        <>
+            <div>
 
-            <Row>
-                <Col lg={3}>
+                <Row>
+                    <Col lg={3}>
 
-                    <ListGroup>
-                        <h2>Categories</h2>
-                        {
-                            category.categories?.map(categories => (
-                                <ListGroup.Item 
-                                key={categories.id} onClick={()=> dispatch(filterThunk(categories.id))}>
-                                    
-                                    {categories.name}
-                                    
+                        <ListGroup className='Home_category'>
+                            <h2>Categories</h2>
+                            {
+                                category.categories?.map(categories => (
+                                    <ListGroup.Item
+                                        key={categories.id} onClick={() => dispatch(filterThunk(categories.id))}>
+
+                                        <p className='Category_home'>{categories.name}</p>
+
                                     </ListGroup.Item>
 
-                            ))
-                        }
+                                ))
+                            }
 
-                    </ListGroup>
-                </Col>
+                        </ListGroup>
+                    </Col>
 
-                <Col>
-                    <h1>Home</h1>
-                    <InputGroup className="mb-3">
-                        <Form.Control
-                            placeholder="Recipient's username"
-                            aria-label="Recipient's username"
-                            aria-describedby="basic-addon2"
-                            onChange={e => setSearchProduct(e.target.value)}
-                            value={searchProduct}
-                        />
-                        <Button variant="outline-secondary" onClick={() => dispatch(getFilterThunk(searchProduct))}>
-                            Search
-                        </Button>
-                    </InputGroup>
+                    <Col>
+                        <h1><i className="fa-solid fa-house"></i>Home</h1>
+                        <InputGroup className="mb-3">
+                            <Form.Control
+                                placeholder="What products are you looking for?"
+                                aria-label="What products are you looking for?"
+                                aria-describedby="basic-addon2"
+                                onChange={e => setSearchProduct(e.target.value)}
+                                value={searchProduct}
+                            />
+                            <Button variant="outline-secondary" onClick={() => dispatch(getFilterThunk(searchProduct))}>
+                                Search
+                            </Button>
+                        </InputGroup>
 
-                    <Row xs={1} md={2} lg={3} className="g-4">
-                        {product.products?.map(productItem => (
-                            <Col key={productItem.id}>
-                                <Card onClick={() => navigate(`/shop/${productItem.id}`)}>
-                                    <Card.Img variant="top" src={productItem.productImgs} />
-                                    <Card.Body>
-                                        <Card.Title>{productItem.title}</Card.Title>
-                                        <div>
-                                            <Card.Title>{productItem.price}</Card.Title>
-                                            <button><i class="fa-solid fa-cart-shopping"></i></button>
-                                        </div>
+                        <Row xs={1} md={2} lg={3} className="g-4">
+                            {product.products?.map(productItem => (
+                                <Col key={productItem.id}>
+                                    <Card className='card_containerHome' onClick={() => navigate(`/shop/${productItem.id}`)}>
+                                        <Card.Img variant="top" src={productItem.productImgs} />
+                                        <hr />
+                                        <Card.Body>
+                                            <Card.Title>{productItem.title}</Card.Title>
 
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                </Col>
-            </Row>
-        </div >
+                                            <div>
+                                                <ListGroup className='container_price' as="ul" >
+                                                    <ListGroup.Item
+                                                        as="li"
+                                                        className="d-flex justify-content-between align-items-start"
+                                                    >
+                                                        <div className="ms-5 me-auto">
+                                                            <div className="fw-bold"></div>
+                                                            <p className='Item_price'>S/.{productItem.price}</p>
+                                                        </div>
+                                                        <Badge bg="light" >
+                                                            <Button variant="outline-danger"> <i class="fa-solid fa-cart-shopping"></i></Button>{' '}
+                                                        </Badge>
+                                                    </ListGroup.Item>
+                                                </ListGroup>
+                                            </div>
+
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    </Col>
+                </Row>
+            </div >
+        </>
     );
 };
 
