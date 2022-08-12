@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Badge, ListGroup, Offcanvas } from 'react-bootstrap';
+import { Badge, Button, ListGroup, Offcanvas } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartThunk } from '../store/slices/cart.Slice';
 
@@ -30,11 +30,11 @@ const CartSidebar = ({ show, handleClose }) => {
                             >
                                 <div className="ms-2 me-auto">
                                     <div className="fw-bold">{carts.title}</div>
-                                    Marca: {carts.brand}
+                                    Price: S/. {carts.price}
                                 </div>
-                                <Badge bg="primary" pill>
-                                    <p>S/. {carts.price}</p>
-                                </Badge>
+                                <Button bg="primary" >
+                                    {carts.productsInCart.quantity}
+                                </Button>
                             </ListGroup.Item>
                             
                         </ListGroup>

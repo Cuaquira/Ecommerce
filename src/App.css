@@ -27,7 +27,7 @@ img{
     padding-top: 5rem;
 }
 .Similary_info h2{
-    color: black;
+    color: rgb(178, 178, 178);
 }
 .Detail_price{
     display: flex;
@@ -69,4 +69,10 @@ img{
     margin-top: 2rem;
     margin-left: 25%;
     
+}
+.input_detail{
+    height: 30px;
+    width: 50px;
+    margin-right: 2rem;
+    text-align: center;
 }

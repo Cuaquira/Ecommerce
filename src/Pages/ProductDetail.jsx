@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Badge, Button, Card, CardGroup, Carousel, Col, ListGroup, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { addCartThunk } from '../store/slices/cart.Slice';
 import { getProductThunk } from '../store/slices/productSlice';
 
 const ProductDetail = () => {
@@ -11,6 +12,7 @@ const ProductDetail = () => {
 
     const [productDetail, setProductDetail] = useState({});
     const [similary, setSimilary] = useState([]);
+    const [quantity, setQuantity] = useState(1);
 
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -27,6 +29,16 @@ const ProductDetail = () => {
         setSimilary(newsSimilary)
 
     }, [allProduct])
+
+    const addProduct = () => {
+        alert("Añandiendo a cart")
+        const product = {
+            id: productDetail.id,
+            quantity
+        }
+        dispatch(addCartThunk(product))
+        console.log(product)
+    }
 
 
     return (
@@ -80,7 +92,14 @@ const ProductDetail = () => {
                                 S/.{productDetail?.price}
                             </div>
                             <Badge bg="light" >
-                                <Button variant="outline-danger"> <i class="fa-solid fa-cart-shopping"></i></Button>{' '}
+                                <input
+                                className='input_detail'
+                                placeholder='Quanty'
+                                value={quantity}
+                                onChange={e => setQuantity(e.target.value)}
+                                />
+                                
+                                <Button onClick={addProduct} variant="outline-danger"> <i class="fa-solid fa-cart-shopping"></i></Button>{' '}
                             </Badge>
                         </ListGroup.Item>
                     </ListGroup>
